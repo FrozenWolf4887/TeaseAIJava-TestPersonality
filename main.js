@@ -2,8 +2,9 @@ run('framework.js');
 run('tests/getVar.js');
 run('tests/setVar.js');
 
-test_getVar();
-test_setVar();
+getListOfTestSuiteNames().forEach(suiteName => {
+    runTestSuiteByName(suiteName);
+});
 
 logResults();
 

@@ -98,3 +98,5 @@ function test_getVar() {
 
     unlockImages();
 }
+
+registerTestSuite('getVar', test_getVar);

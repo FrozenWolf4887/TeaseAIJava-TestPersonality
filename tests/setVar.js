@@ -150,3 +150,5 @@ function test_setVar() {
 
     unlockImages();
 }
+
+registerTestSuite('setVar', test_setVar);

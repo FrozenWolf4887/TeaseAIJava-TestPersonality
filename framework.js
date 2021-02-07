@@ -1,16 +1,38 @@
 let countOfChecks = 0;
 let countOfFailures = 0;
+let mapOfTestSuiteNamesToFunctions = {};
 
+const colourOfTestSuite = 'BROWN';
 const colourOfTest = 'BLUE';
 const colourOfPass = 'GREEN';
 const colourOfFail = 'RED';
+
+function registerTestSuite(suiteName, testFunction) {
+    mapOfTestSuiteNamesToFunctions[suiteName] = testFunction;
+}
+
+function getListOfTestSuiteNames() {
+    return Object.keys(mapOfTestSuiteNamesToFunctions);
+}
+
+function runTestSuiteByName(suiteName) {
+    const testFunction = mapOfTestSuiteNamesToFunctions[suiteName];
+    if (testFunction != null) {
+        logTestSuite(suiteName);
+        testFunction();
+    }
+}
 
 function log(message) {
     sendMessage(message, 0 ,false);
 }
 
-function logTest(message) {
-    log(`<c=${colourOfTest}>Test</c>: <u>${message}</u>`);
+function logTestSuite(suiteName) {
+    log(`<fs=20><b><u><c=${colourOfTestSuite}>Test Suite</c>: ${suiteName}</u></b></fs>`);
+}
+
+function logTest(testTitle) {
+    log(`<c=${colourOfTest}>Test</c>: <u>${testTitle}</u>`);
 }
 
 function logFail(message) {
