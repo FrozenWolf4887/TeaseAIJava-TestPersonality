@@ -1,6 +1,4 @@
 function test_setVar() {
-    lockImages();
-
     const uniqueId = setDate().getTimeInMillis();
     const testBoolVarName = 'testBoolVar' + uniqueId
     const testIntVarName = 'testIntVar' + uniqueId
@@ -10,132 +8,132 @@ function test_setVar() {
     logTest('setVar new variable');
 
     const vBoolCreated = setVar(testBoolVarName, true);
-    verifyNotNull(vBoolCreated);
+    assertNotNull(vBoolCreated);
     verifyType('boolean', vBoolCreated);
     verifyEqual(true, vBoolCreated);
 
     const vIntCreated = setVar(testIntVarName, 5);
-    verifyNotNull(vIntCreated);
+    assertNotNull(vIntCreated);
     verifyType('number', vIntCreated);
     verifyEqual(5, vIntCreated);
 
     const vFloatCreated = setVar(testFloatVarName, 6.5);
-    verifyNotNull(vFloatCreated);
+    assertNotNull(vFloatCreated);
     verifyType('number', vFloatCreated);
     verifyEqual(6.5, vFloatCreated);
 
     const vStringCreated = setVar(testStringVarName, 'Hello');
-    verifyNotNull(vStringCreated);
+    assertNotNull(vStringCreated);
     verifyType('string', vStringCreated);
     verifyEqual('Hello', vStringCreated);
 
     logTest('getVar of set variable');
 
     const vBoolRetrieved = getVar(testBoolVarName);
-    verifyNotNull(vBoolRetrieved);
+    assertNotNull(vBoolRetrieved);
     verifyType('boolean', vBoolRetrieved);
     verifyEqual(true, vBoolRetrieved);
 
     const vIntRetrieved = getVar(testIntVarName);
-    verifyNotNull(vIntRetrieved);
+    assertNotNull(vIntRetrieved);
     verifyType('number', vIntRetrieved);
     verifyEqual(5, vIntRetrieved);
 
     const vFloatRetrieved = getVar(testFloatVarName);
-    verifyNotNull(vFloatRetrieved);
+    assertNotNull(vFloatRetrieved);
     verifyType('number', vFloatRetrieved);
     verifyEqual(6.5, vFloatRetrieved);
 
     const vStringRetrieved = getVar(testStringVarName);
-    verifyNotNull(vStringRetrieved);
+    assertNotNull(vStringRetrieved);
     verifyType('string', vStringRetrieved);
     verifyEqual('Hello', vStringRetrieved);
 
     logTest('setVar replace existing variable with same type');
 
     const vBoolReplaced = setVar(testBoolVarName, false);
-    verifyNotNull(vBoolReplaced);
+    assertNotNull(vBoolReplaced);
     verifyType('boolean', vBoolReplaced);
     verifyEqual(false, vBoolReplaced);
 
     const vIntReplaced = setVar(testIntVarName, 7);
-    verifyNotNull(vIntReplaced);
+    assertNotNull(vIntReplaced);
     verifyType('number', vIntReplaced);
     verifyEqual(7, vIntReplaced);
 
     const vFloatReplaced = setVar(testFloatVarName, 8.5);
-    verifyNotNull(vFloatReplaced);
+    assertNotNull(vFloatReplaced);
     verifyType('number', vFloatReplaced);
     verifyEqual(8.5, vFloatReplaced);
 
     const vStringReplaced = setVar(testStringVarName, 'World');
-    verifyNotNull(vStringReplaced);
+    assertNotNull(vStringReplaced);
     verifyType('string', vStringReplaced);
     verifyEqual('World', vStringReplaced);
 
     logTest('getVar of updated variable');
 
     const vBoolUpdated = getVar(testBoolVarName);
-    verifyNotNull(vBoolUpdated);
+    assertNotNull(vBoolUpdated);
     verifyType('boolean', vBoolUpdated);
     verifyEqual(false, vBoolUpdated);
 
     const vIntUpdated = getVar(testIntVarName);
-    verifyNotNull(vIntUpdated);
+    assertNotNull(vIntUpdated);
     verifyType('number', vIntUpdated);
     verifyEqual(7, vIntUpdated);
 
     const vFloatUpdated = getVar(testFloatVarName);
-    verifyNotNull(vFloatUpdated);
+    assertNotNull(vFloatUpdated);
     verifyType('number', vFloatUpdated);
     verifyEqual(8.5, vFloatUpdated);
 
     const vStringUpdated = getVar(testStringVarName);
-    verifyNotNull(vStringUpdated);
+    assertNotNull(vStringUpdated);
     verifyType('string', vStringUpdated);
     verifyEqual('World', vStringUpdated);
 
     logTest('setVar replace existing variable with different type');
 
     const vIntReplacedWithBool = setVar(testIntVarName, true);
-    verifyNotNull(vIntReplacedWithBool);
+    assertNotNull(vIntReplacedWithBool);
     verifyType('boolean', vIntReplacedWithBool);
     verifyEqual(true, vIntReplacedWithBool);
 
     const vBoolReplacedWithInt = setVar(testBoolVarName, 11);
-    verifyNotNull(vBoolReplacedWithInt);
+    assertNotNull(vBoolReplacedWithInt);
     verifyType('number', vBoolReplacedWithInt);
     verifyEqual(11, vBoolReplacedWithInt);
 
     const vStringReplacedWithFloat = setVar(testStringVarName, 12.5);
-    verifyNotNull(vStringReplacedWithFloat);
+    assertNotNull(vStringReplacedWithFloat);
     verifyType('number', vStringReplacedWithFloat);
     verifyEqual(12.5, vStringReplacedWithFloat);
 
     const vFloatReplacedWithString = setVar(testFloatVarName, 'Banana');
-    verifyNotNull(vFloatReplacedWithString);
+    assertNotNull(vFloatReplacedWithString);
     verifyType('string', vFloatReplacedWithString);
     verifyEqual('Banana', vFloatReplacedWithString);
 
     logTest('getVar of new variable type');
 
     const vBoolNewType = getVar(testIntVarName);
-    verifyNotNull(vBoolNewType);
+    assertNotNull(vBoolNewType);
     verifyType('boolean', vBoolNewType);
     verifyEqual(true, vBoolNewType);
 
     const vIntNewType = getVar(testBoolVarName);
-    verifyNotNull(vIntNewType);
+    assertNotNull(vIntNewType);
     verifyType('number', vIntNewType);
     verifyEqual(11, vIntNewType);
 
     const vFloatNewType = getVar(testStringVarName);
-    verifyNotNull(vFloatNewType);
+    assertNotNull(vFloatNewType);
     verifyType('number', vFloatNewType);
     verifyEqual(12.5, vFloatNewType);
 
     const vStringNewType = getVar(testFloatVarName);
-    verifyNotNull(vStringNewType);
+    assertNotNull(vStringNewType);
     verifyType('string', vStringNewType);
     verifyEqual('Banana', vStringNewType);
 
@@ -147,8 +145,6 @@ function test_setVar() {
     verifyNull(bad2);
     const bad3 = setVar('someVar', 0, 1);
     verifyNull(bad3);
-
-    unlockImages();
 }
 
-registerTestSuite('setVar', test_setVar);
+registerTestSuite('setVar', [test_setVar]);
