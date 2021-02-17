@@ -22,6 +22,9 @@ function getListOfTestFunctions_showImage() {
     const MediaURL = Java.type('me.goddragon.teaseai.api.media.MediaURL');
     const MediaType = Java.type('me.goddragon.teaseai.api.media.MediaType');
 
+    const millisToleranceForShowing = 500;
+    const millisToleranceForDownloading = 500;
+
     const pathToTestImages = 'Personalities/Testing/Resources/Images';
     const pathToDownloadedImages = 'Images/System/Downloaded Images';
     const regexPathToDownloadedJpgImages = `^${pathToDownloadedImages}/testing-image[1-6]\\.jpg$`;
@@ -57,7 +60,7 @@ function getListOfTestFunctions_showImage() {
 
         resetTimer();
         const fileJpeg1 = showImage(pathToJpgImage1);
-        verifyElapsedMillisLessThan(500);
+        verifyElapsedMillisLessThan(millisToleranceForShowing);
         assertNotNull(fileJpeg1);
         assertType(File, fileJpeg1);
         verifyEqual(pathToJpgImage1, fileJpeg1.getPath());
@@ -67,7 +70,7 @@ function getListOfTestFunctions_showImage() {
 
         resetTimer();
         const fileJpeg2 = showImage(pathToJpgImage2, 3);
-        verifyElapsedMillisBetween(3000, 3500);
+        verifyElapsedMillisBetween(3000, 3000 + millisToleranceForShowing);
         assertNotNull(fileJpeg2);
         assertType(File, fileJpeg2);
         verifyEqual(pathToJpgImage2, fileJpeg2.getPath());
@@ -77,7 +80,7 @@ function getListOfTestFunctions_showImage() {
 
         resetTimer();
         const fileJpeg3 = showImage(pathToJpgImage3, 5.8);
-        verifyElapsedMillisBetween(5000, 5500);
+        verifyElapsedMillisBetween(5000, 5000 + millisToleranceForShowing);
         assertNotNull(fileJpeg3);
         assertType(File, fileJpeg3);
         verifyEqual(pathToJpgImage3, fileJpeg3.getPath());
@@ -87,7 +90,7 @@ function getListOfTestFunctions_showImage() {
 
         resetTimer();
         const file = showImage(pathToMissingJpgImage);
-        verifyElapsedMillisLessThan(500);
+        verifyElapsedMillisLessThan(millisToleranceForShowing);
         verifyNull(file);
     },
     () => {
@@ -95,7 +98,7 @@ function getListOfTestFunctions_showImage() {
 
         resetTimer();
         const file = showImage(pathToMissingJpgImage, 3);
-        verifyElapsedMillisBetween(3000, 3500);
+        verifyElapsedMillisBetween(3000, 3000 + millisToleranceForShowing);
         verifyNull(file);
     },
     () => {
@@ -103,7 +106,7 @@ function getListOfTestFunctions_showImage() {
 
         resetTimer();
         const file = showImage(pathToMissingJpgImage, 5.8);
-        verifyElapsedMillisBetween(5000, 5500);
+        verifyElapsedMillisBetween(5000, 5000 + millisToleranceForShowing);
         verifyNull(file);
     },
     () => {
@@ -111,7 +114,7 @@ function getListOfTestFunctions_showImage() {
 
         resetTimer();
         const filePng4 = showImage(pathToPngImage4);
-        verifyElapsedMillisLessThan(500);
+        verifyElapsedMillisLessThan(millisToleranceForShowing);
         assertNotNull(filePng4);
         assertType(File, filePng4);
         verifyEqual(pathToPngImage4, filePng4.getPath());
@@ -121,7 +124,7 @@ function getListOfTestFunctions_showImage() {
 
         resetTimer();
         const filePng5 = showImage(pathToPngImage5, 3);
-        verifyElapsedMillisBetween(3000, 3500);
+        verifyElapsedMillisBetween(3000, 3000 + millisToleranceForShowing);
         assertNotNull(filePng5);
         assertType(File, filePng5);
         verifyEqual(pathToPngImage5, filePng5.getPath());
@@ -131,7 +134,7 @@ function getListOfTestFunctions_showImage() {
 
         resetTimer();
         const filePng6 = showImage(pathToPngImage6, 5.8);
-        verifyElapsedMillisBetween(5000, 5500);
+        verifyElapsedMillisBetween(5000, 5000 + millisToleranceForShowing);
         assertNotNull(filePng6);
         assertType(File, filePng6);
         verifyEqual(pathToPngImage6, filePng6.getPath());
@@ -141,7 +144,7 @@ function getListOfTestFunctions_showImage() {
 
         resetTimer();
         const file = showImage(pathToMissingPngImage);
-        verifyElapsedMillisLessThan(500);
+        verifyElapsedMillisLessThan(millisToleranceForShowing);
         verifyNull(file);
     },
     () => {
@@ -149,7 +152,7 @@ function getListOfTestFunctions_showImage() {
 
         resetTimer();
         const file = showImage(pathToMissingPngImage, 3);
-        verifyElapsedMillisBetween(3000, 3500);
+        verifyElapsedMillisBetween(3000, 3000 + millisToleranceForShowing);
         verifyNull(file);
     },
     () => {
@@ -157,7 +160,7 @@ function getListOfTestFunctions_showImage() {
 
         resetTimer();
         const file = showImage(pathToMissingPngImage, 5.8);
-        verifyElapsedMillisBetween(5000, 5500);
+        verifyElapsedMillisBetween(5000, 5000 + millisToleranceForShowing);
         verifyNull(file);
     },
     () => {
@@ -165,7 +168,7 @@ function getListOfTestFunctions_showImage() {
 
         resetTimer();
         const fileGif1 = showImage(pathToGifImage1);
-        verifyElapsedMillisLessThan(500);
+        verifyElapsedMillisLessThan(millisToleranceForShowing);
         assertNotNull(fileGif1);
         assertType(File, fileGif1);
         verifyEqual(pathToGifImage1, fileGif1.getPath());
@@ -175,7 +178,7 @@ function getListOfTestFunctions_showImage() {
 
         resetTimer();
         const fileGif2 = showImage(pathToGifImage2, 3);
-        verifyElapsedMillisBetween(3000, 3500);
+        verifyElapsedMillisBetween(3000, 3000 + millisToleranceForShowing);
         assertNotNull(fileGif2);
         assertType(File, fileGif2);
         verifyEqual(pathToGifImage2, fileGif2.getPath());
@@ -185,7 +188,7 @@ function getListOfTestFunctions_showImage() {
 
         resetTimer();
         const fileGif3 = showImage(pathToGifImage3, 5.8);
-        verifyElapsedMillisBetween(5000, 5500);
+        verifyElapsedMillisBetween(5000, 5000 + millisToleranceForShowing);
         assertNotNull(fileGif3);
         assertType(File, fileGif3);
         verifyEqual(pathToGifImage3, fileGif3.getPath());
@@ -195,7 +198,7 @@ function getListOfTestFunctions_showImage() {
 
         resetTimer();
         const file = showImage(pathToMissingGifImage);
-        verifyElapsedMillisLessThan(500);
+        verifyElapsedMillisLessThan(millisToleranceForShowing);
         verifyNull(file);
     },
     () => {
@@ -203,7 +206,7 @@ function getListOfTestFunctions_showImage() {
 
         resetTimer();
         const file = showImage(pathToMissingGifImage, 3);
-        verifyElapsedMillisBetween(3000, 3500);
+        verifyElapsedMillisBetween(3000, 3000 + millisToleranceForShowing);
         verifyNull(file);
     },
     () => {
@@ -211,7 +214,7 @@ function getListOfTestFunctions_showImage() {
 
         resetTimer();
         const file = showImage(pathToMissingGifImage, 5.8);
-        verifyElapsedMillisBetween(5000, 5500);
+        verifyElapsedMillisBetween(5000, 5000 + millisToleranceForShowing);
         verifyNull(file);
     },
     () => {
@@ -221,7 +224,7 @@ function getListOfTestFunctions_showImage() {
 
         resetTimer();
         const retFileJpeg1 = showImage(fileJpeg1);
-        verifyElapsedMillisLessThan(500);
+        verifyElapsedMillisLessThan(millisToleranceForShowing);
         assertType(File, retFileJpeg1);
         verifySame(fileJpeg1, retFileJpeg1);
     },
@@ -232,7 +235,7 @@ function getListOfTestFunctions_showImage() {
 
         resetTimer();
         const retFileJpeg2 = showImage(fileJpeg2, 2);
-        verifyElapsedMillisBetween(2000, 2500);
+        verifyElapsedMillisBetween(2000, 2000 + millisToleranceForShowing);
         assertType(File, retFileJpeg2);
         verifySame(fileJpeg2, retFileJpeg2);
     },
@@ -254,7 +257,7 @@ function getListOfTestFunctions_showImage() {
 
         resetTimer();
         const file = showImage(fileMissing);
-        verifyElapsedMillisLessThan(500);
+        verifyElapsedMillisLessThan(millisToleranceForShowing);
         verifySame(fileMissing, file);
     },
     () => {
@@ -264,7 +267,7 @@ function getListOfTestFunctions_showImage() {
 
         resetTimer();
         const file = showImage(fileMissing, 3);
-        verifyElapsedMillisBetween(3000, 3500);
+        verifyElapsedMillisBetween(3000, 3000 + millisToleranceForShowing);
         verifySame(fileMissing, file);
     },
     () => {
@@ -274,7 +277,7 @@ function getListOfTestFunctions_showImage() {
 
         resetTimer();
         const file = showImage(fileMissing, 5.8);
-        verifyElapsedMillisBetween(5000, 5500);
+        verifyElapsedMillisBetween(5000, 5000 + millisToleranceForShowing);
         verifySame(fileMissing, file);
     },
     () => {
@@ -284,7 +287,7 @@ function getListOfTestFunctions_showImage() {
 
         resetTimer();
         const retFilePng4 = showImage(filePng4);
-        verifyElapsedMillisLessThan(500);
+        verifyElapsedMillisLessThan(millisToleranceForShowing);
         assertType(File, retFilePng4);
         verifySame(filePng4, retFilePng4);
     },
@@ -295,7 +298,7 @@ function getListOfTestFunctions_showImage() {
 
         resetTimer();
         const retFilePng5 = showImage(filePng5, 2);
-        verifyElapsedMillisBetween(2000, 2500);
+        verifyElapsedMillisBetween(2000, 2000 + millisToleranceForShowing);
         assertType(File, retFilePng5);
         verifySame(filePng5, retFilePng5);
     },
@@ -317,7 +320,7 @@ function getListOfTestFunctions_showImage() {
 
         resetTimer();
         const file = showImage(fileMissing);
-        verifyElapsedMillisLessThan(500);
+        verifyElapsedMillisLessThan(millisToleranceForShowing);
         verifySame(fileMissing, file);
     },
     () => {
@@ -327,7 +330,7 @@ function getListOfTestFunctions_showImage() {
 
         resetTimer();
         const file = showImage(fileMissing, 3);
-        verifyElapsedMillisBetween(3000, 3500);
+        verifyElapsedMillisBetween(3000, 3000 + millisToleranceForShowing);
         verifySame(fileMissing, file);
     },
     () => {
@@ -337,7 +340,7 @@ function getListOfTestFunctions_showImage() {
 
         resetTimer();
         const file = showImage(fileMissing, 5.8);
-        verifyElapsedMillisBetween(5000, 5500);
+        verifyElapsedMillisBetween(5000, 5000 + millisToleranceForShowing);
         verifySame(fileMissing, file);
     },
     () => {
@@ -347,7 +350,7 @@ function getListOfTestFunctions_showImage() {
 
         resetTimer();
         const retFileGif1 = showImage(fileGif1);
-        verifyElapsedMillisLessThan(500);
+        verifyElapsedMillisLessThan(millisToleranceForShowing);
         assertType(File, retFileGif1);
         verifySame(fileGif1, retFileGif1);
     },
@@ -358,7 +361,7 @@ function getListOfTestFunctions_showImage() {
 
         resetTimer();
         const retFileGif2 = showImage(fileGif2, 2);
-        verifyElapsedMillisBetween(2000, 2500);
+        verifyElapsedMillisBetween(2000, 2000 + millisToleranceForShowing);
         assertType(File, retFileGif2);
         verifySame(fileGif2, retFileGif2);
     },
@@ -380,7 +383,7 @@ function getListOfTestFunctions_showImage() {
 
         resetTimer();
         const file = showImage(fileMissing);
-        verifyElapsedMillisLessThan(500);
+        verifyElapsedMillisLessThan(millisToleranceForShowing);
         verifySame(fileMissing, file);
     },
     () => {
@@ -390,7 +393,7 @@ function getListOfTestFunctions_showImage() {
 
         resetTimer();
         const file = showImage(fileMissing, 3);
-        verifyElapsedMillisBetween(3000, 3500);
+        verifyElapsedMillisBetween(3000, 3000 + millisToleranceForShowing);
         verifySame(fileMissing, file);
     },
     () => {
@@ -400,7 +403,7 @@ function getListOfTestFunctions_showImage() {
 
         resetTimer();
         const file = showImage(fileMissing, 5.8);
-        verifyElapsedMillisBetween(5000, 5500);
+        verifyElapsedMillisBetween(5000, 5000 + millisToleranceForShowing);
         verifySame(fileMissing, file);
     },
     () => {
@@ -409,7 +412,7 @@ function getListOfTestFunctions_showImage() {
 
         resetTimer();
         const fileJpg1 = showImage(mediaJpgUrl);
-        verifyElapsedMillisLessThan(500);
+        verifyElapsedMillisLessThan(millisToleranceForDownloading + millisToleranceForShowing);
         assertNotNull(fileJpg1);
         assertType(File, fileJpg1);
         verifyMatch(regexPathToDownloadedJpgImages, fileJpg1.getPath());
@@ -420,7 +423,7 @@ function getListOfTestFunctions_showImage() {
 
         resetTimer();
         const fileJpg2 = showImage(mediaJpgUrl, 2);
-        verifyElapsedMillisBetween(2000, 2500);
+        verifyElapsedMillisBetween(2000, 2000 + millisToleranceForDownloading + millisToleranceForShowing);
         assertNotNull(fileJpg2);
         assertType(File, fileJpg2);
         verifyMatch(regexPathToDownloadedJpgImages, fileJpg2.getPath());
@@ -431,7 +434,7 @@ function getListOfTestFunctions_showImage() {
 
         resetTimer();
         const fileJpg3 = showImage(mediaJpgUrl, 3.5);
-        verifyElapsedMillisBetween(3000, 3500);
+        verifyElapsedMillisBetween(3000, 3000 + millisToleranceForDownloading + millisToleranceForShowing);
         assertNotNull(fileJpg3);
         assertType(File, fileJpg3);
         verifyMatch(regexPathToDownloadedJpgImages, fileJpg3.getPath());
@@ -442,7 +445,7 @@ function getListOfTestFunctions_showImage() {
 
         resetTimer();
         const urlPng1 = showImage(mediaPngUrl);
-        verifyElapsedMillisLessThan(500);
+        verifyElapsedMillisLessThan(millisToleranceForDownloading + millisToleranceForShowing);
         assertNotNull(urlPng1);
         assertType(File, urlPng1);
         verifyMatch(regexPathToDownloadedPngImages, urlPng1.getPath());
@@ -453,7 +456,7 @@ function getListOfTestFunctions_showImage() {
 
         resetTimer();
         const urlPng2 = showImage(mediaPngUrl, 2);
-        verifyElapsedMillisBetween(2000, 2500);
+        verifyElapsedMillisBetween(2000, 2000 + millisToleranceForDownloading + millisToleranceForShowing);
         assertNotNull(urlPng2);
         assertType(File, urlPng2);
         verifyMatch(regexPathToDownloadedPngImages, urlPng2.getPath());
@@ -464,7 +467,7 @@ function getListOfTestFunctions_showImage() {
 
         resetTimer();
         const urlPng3 = showImage(mediaPngUrl, 3.5);
-        verifyElapsedMillisBetween(3000, 3500);
+        verifyElapsedMillisBetween(3000, 3000 + millisToleranceForDownloading + millisToleranceForShowing);
         assertNotNull(urlPng3);
         assertType(File, urlPng3);
         verifyMatch(regexPathToDownloadedPngImages, urlPng3.getPath());
@@ -475,7 +478,7 @@ function getListOfTestFunctions_showImage() {
 
         resetTimer();
         const urlGif1 = showImage(mediaGifUrl);
-        verifyElapsedMillisLessThan(500);
+        verifyElapsedMillisLessThan(millisToleranceForDownloading + millisToleranceForShowing);
         assertNotNull(urlGif1);
         assertType(File, urlGif1);
         verifyMatch(regexPathToDownloadedGifImages, urlGif1.getPath());
@@ -486,7 +489,7 @@ function getListOfTestFunctions_showImage() {
 
         resetTimer();
         const urlGif2 = showImage(mediaGifUrl, 2);
-        verifyElapsedMillisBetween(2000, 2500);
+        verifyElapsedMillisBetween(2000, 2000 + millisToleranceForDownloading + millisToleranceForShowing);
         assertNotNull(urlGif2);
         assertType(File, urlGif2);
         verifyMatch(regexPathToDownloadedGifImages, urlGif2.getPath());
@@ -497,7 +500,7 @@ function getListOfTestFunctions_showImage() {
 
         resetTimer();
         const urlGif3 = showImage(mediaGifUrl, 3.5);
-        verifyElapsedMillisBetween(3000, 3500);
+        verifyElapsedMillisBetween(3000, 3000 + millisToleranceForDownloading + millisToleranceForShowing);
         assertNotNull(urlGif3);
         assertType(File, urlGif3);
         verifyMatch(regexPathToDownloadedGifImages, urlGif3.getPath());
