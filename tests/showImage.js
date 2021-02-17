@@ -1,4 +1,3 @@
-// TODO: Missing explicit local files
 // TODO: Random local files (*.jpg)
 // TODO: Missing local random files
 // TODO: Undecodeable local files
@@ -42,9 +41,14 @@ function getListOfTestFunctions_showImage() {
     const pathToGifImage1 = `${pathToTestImages}/testing-image1.gif`;
     const pathToGifImage2 = `${pathToTestImages}/testing-image2.gif`;
     const pathToGifImage3 = `${pathToTestImages}/testing-image3.gif`;
+
     const mediaJpgUrl = new MediaURL(MediaType.IMAGE, filenameOfTestJpgUrls);
     const mediaPngUrl = new MediaURL(MediaType.IMAGE, filenameOfTestPngUrls);
     const mediaGifUrl = new MediaURL(MediaType.IMAGE, filenameOfTestGifUrls);
+
+    const pathToMissingJpgImage = `${pathToTestImages}/testing-missing.jpg`;
+    const pathToMissingPngImage = `${pathToTestImages}/testing-missing.png`;
+    const pathToMissingGifImage = `${pathToTestImages}/testing-missing.gif`;
 
     const listOfTestFunctions = [
     () => {
@@ -79,6 +83,30 @@ function getListOfTestFunctions_showImage() {
         verifyEqual(pathToJpgImage3, fileJpeg3.getPath());
     },
     () => {
+        logTest('showImage(String) JPEG, explicit, missing');
+
+        resetTimer();
+        const file = showImage(pathToMissingJpgImage);
+        verifyElapsedMillisLessThan(500);
+        verifyNull(file);
+    },
+    () => {
+        logTest('showImage(String, Integer) JPEG, explicit, missing');
+
+        resetTimer();
+        const file = showImage(pathToMissingJpgImage, 3);
+        verifyElapsedMillisBetween(3000, 3500);
+        verifyNull(file);
+    },
+    () => {
+        logTest('showImage(String, Double) JPEG, explicit, missing');
+
+        resetTimer();
+        const file = showImage(pathToMissingJpgImage, 5.8);
+        verifyElapsedMillisBetween(5000, 5500);
+        verifyNull(file);
+    },
+    () => {
         logTest('showImage(String) PNG, explicit, existing');
 
         resetTimer();
@@ -109,6 +137,30 @@ function getListOfTestFunctions_showImage() {
         verifyEqual(pathToPngImage6, filePng6.getPath());
     },
     () => {
+        logTest('showImage(String) PNG, explicit, missing');
+
+        resetTimer();
+        const file = showImage(pathToMissingPngImage);
+        verifyElapsedMillisLessThan(500);
+        verifyNull(file);
+    },
+    () => {
+        logTest('showImage(String, Integer) PNG, explicit, missing');
+
+        resetTimer();
+        const file = showImage(pathToMissingPngImage, 3);
+        verifyElapsedMillisBetween(3000, 3500);
+        verifyNull(file);
+    },
+    () => {
+        logTest('showImage(String, Double) PNG, explicit, missing');
+
+        resetTimer();
+        const file = showImage(pathToMissingPngImage, 5.8);
+        verifyElapsedMillisBetween(5000, 5500);
+        verifyNull(file);
+    },
+    () => {
         logTest('showImage(String) GIF, explicit, existing');
 
         resetTimer();
@@ -137,6 +189,30 @@ function getListOfTestFunctions_showImage() {
         assertNotNull(fileGif3);
         assertType(File, fileGif3);
         verifyEqual(pathToGifImage3, fileGif3.getPath());
+    },
+    () => {
+        logTest('showImage(String) GIF, explicit, missing');
+
+        resetTimer();
+        const file = showImage(pathToMissingGifImage);
+        verifyElapsedMillisLessThan(500);
+        verifyNull(file);
+    },
+    () => {
+        logTest('showImage(String, Integer) GIF, explicit, missing');
+
+        resetTimer();
+        const file = showImage(pathToMissingGifImage, 3);
+        verifyElapsedMillisBetween(3000, 3500);
+        verifyNull(file);
+    },
+    () => {
+        logTest('showImage(String, Double) GIF, explicit, missing');
+
+        resetTimer();
+        const file = showImage(pathToMissingGifImage, 5.8);
+        verifyElapsedMillisBetween(5000, 5500);
+        verifyNull(file);
     },
     () => {
         logTest('showImage(File) JPEG, explicit, existing');
@@ -172,6 +248,36 @@ function getListOfTestFunctions_showImage() {
         verifySame(fileJpeg3, retFileJpeg3);
     },
     () => {
+        logTest('showImage(File) JPEG, explicit, missing');
+
+        const fileMissing = new File(pathToMissingJpgImage);
+
+        resetTimer();
+        const file = showImage(fileMissing);
+        verifyElapsedMillisLessThan(500);
+        verifySame(fileMissing, file);
+    },
+    () => {
+        logTest('showImage(File, Integer) JPEG, explicit, missing');
+
+        const fileMissing = new File(pathToMissingJpgImage);
+
+        resetTimer();
+        const file = showImage(fileMissing, 3);
+        verifyElapsedMillisBetween(3000, 3500);
+        verifySame(fileMissing, file);
+    },
+    () => {
+        logTest('showImage(File, Double) JPEG, explicit, missing');
+
+        const fileMissing = new File(pathToMissingJpgImage);
+
+        resetTimer();
+        const file = showImage(fileMissing, 5.8);
+        verifyElapsedMillisBetween(5000, 5500);
+        verifySame(fileMissing, file);
+    },
+    () => {
         logTest('showImage(File) PNG, explicit, existing');
 
         const filePng4 = new File(pathToPngImage4);
@@ -205,6 +311,36 @@ function getListOfTestFunctions_showImage() {
         verifySame(filePng6, retFilePng6);
     },
     () => {
+        logTest('showImage(File) PNG, explicit, missing');
+
+        const fileMissing = new File(pathToMissingPngImage);
+
+        resetTimer();
+        const file = showImage(fileMissing);
+        verifyElapsedMillisLessThan(500);
+        verifySame(fileMissing, file);
+    },
+    () => {
+        logTest('showImage(File, Integer) PNG, explicit, missing');
+
+        const fileMissing = new File(pathToMissingPngImage);
+
+        resetTimer();
+        const file = showImage(fileMissing, 3);
+        verifyElapsedMillisBetween(3000, 3500);
+        verifySame(fileMissing, file);
+    },
+    () => {
+        logTest('showImage(File, Double) PNG, explicit, missing');
+
+        const fileMissing = new File(pathToMissingPngImage);
+
+        resetTimer();
+        const file = showImage(fileMissing, 5.8);
+        verifyElapsedMillisBetween(5000, 5500);
+        verifySame(fileMissing, file);
+    },
+    () => {
         logTest('showImage(File) GIF, explicit, existing');
 
         const fileGif1 = new File(pathToGifImage1);
@@ -236,6 +372,36 @@ function getListOfTestFunctions_showImage() {
         verifyElapsedMillisBetween(4000, 4500);
         assertType(File, retFileGif3);
         verifySame(fileGif3, retFileGif3);
+    },
+    () => {
+        logTest('showImage(File) GIF, explicit, missing');
+
+        const fileMissing = new File(pathToMissingGifImage);
+
+        resetTimer();
+        const file = showImage(fileMissing);
+        verifyElapsedMillisLessThan(500);
+        verifySame(fileMissing, file);
+    },
+    () => {
+        logTest('showImage(File, Integer) GIF, explicit, missing');
+
+        const fileMissing = new File(pathToMissingGifImage);
+
+        resetTimer();
+        const file = showImage(fileMissing, 3);
+        verifyElapsedMillisBetween(3000, 3500);
+        verifySame(fileMissing, file);
+    },
+    () => {
+        logTest('showImage(File, Double) GIF, explicit, missing');
+
+        const fileMissing = new File(pathToMissingGifImage);
+
+        resetTimer();
+        const file = showImage(fileMissing, 5.8);
+        verifyElapsedMillisBetween(5000, 5500);
+        verifySame(fileMissing, file);
     },
     () => {
         logTest('showImage(MediaURL) JPG, explicit, existing');
