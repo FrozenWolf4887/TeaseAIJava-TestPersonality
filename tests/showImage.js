@@ -10,7 +10,7 @@
 // TODO: Missing file reference from MediaURL file
 // TODO: Undecodeable file reference from MediaURL file
 
-function getListOfTests_showImage() {
+function getListOfTestFunctions_showImage() {
 
     function logUrlFilesDependency() {
         logNote('The following URL fetch tests require the following:');
@@ -19,268 +19,335 @@ function getListOfTests_showImage() {
         logNote("    For example, 'python3 -m http.server'");
     }
 
-    const pathToTestImages = 'Personalities/Testing/Resources/Images';
-    const pathToDownloadedImages = 'Images/System/Downloaded Images';
-    const filenameOfTestPngUrls = 'testing.png.tumblr.com';
-    const filenameOfTestJpgUrls = 'testing.jpg.tumblr.com';
-    const filenameOfTestGifUrls = 'testing.gif.tumblr.com';
-
     const File = Java.type('java.io.File');
     const MediaURL = Java.type('me.goddragon.teaseai.api.media.MediaURL');
     const MediaType = Java.type('me.goddragon.teaseai.api.media.MediaType');
 
-    function test_showImage_String_JPEG() {
-        logTest('showImage(String) JPEG');
-        logNote('This test may fail due to the Java VM initialising the image handling, in which case, run it again');
+    const pathToTestImages = 'Personalities/Testing/Resources/Images';
+    const pathToDownloadedImages = 'Images/System/Downloaded Images';
+    const regexPathToDownloadedJpgImages = `^${pathToDownloadedImages}/testing-image[1-6]\\.jpg$`;
+    const regexPathToDownloadedPngImages = `^${pathToDownloadedImages}/testing-image[1-6]\\.png$`;
+    const regexPathToDownloadedGifImages = `^${pathToDownloadedImages}/testing-image[1-6]\\.gif$`;
+
+    const filenameOfTestPngUrls = 'testing.png.tumblr.com';
+    const filenameOfTestJpgUrls = 'testing.jpg.tumblr.com';
+    const filenameOfTestGifUrls = 'testing.gif.tumblr.com';
+
+    const pathToJpgImage1 = `${pathToTestImages}/testing-image1.jpg`;
+    const pathToJpgImage2 = `${pathToTestImages}/testing-image2.jpg`;
+    const pathToJpgImage3 = `${pathToTestImages}/testing-image3.jpg`;
+    const pathToPngImage4 = `${pathToTestImages}/testing-image4.png`;
+    const pathToPngImage5 = `${pathToTestImages}/testing-image5.png`;
+    const pathToPngImage6 = `${pathToTestImages}/testing-image6.png`;
+    const pathToGifImage1 = `${pathToTestImages}/testing-image1.gif`;
+    const pathToGifImage2 = `${pathToTestImages}/testing-image2.gif`;
+    const pathToGifImage3 = `${pathToTestImages}/testing-image3.gif`;
+    const mediaJpgUrl = new MediaURL(MediaType.IMAGE, filenameOfTestJpgUrls);
+    const mediaPngUrl = new MediaURL(MediaType.IMAGE, filenameOfTestPngUrls);
+    const mediaGifUrl = new MediaURL(MediaType.IMAGE, filenameOfTestGifUrls);
+
+    const listOfTestFunctions = [
+    () => {
+        logTest('showImage(String) JPEG, explicit, existing');
+        logNote('This first test may fail due to the Java VM initialising the image handling, in which case, run it again');
 
         resetTimer();
-        const fileJpeg1 = showImage(`${pathToTestImages}/testing-image1.jpg`);
+        const fileJpeg1 = showImage(pathToJpgImage1);
         verifyElapsedMillisLessThan(500);
         assertNotNull(fileJpeg1);
         assertType(File, fileJpeg1);
-        verifyEqual(`${pathToTestImages}/testing-image1.jpg`, fileJpeg1.getPath());
+        verifyEqual(pathToJpgImage1, fileJpeg1.getPath());
+    },
+    () => {
+        logTest('showImage(String, Integer) JPEG, explicit, existing');
 
         resetTimer();
-        const fileJpeg2 = showImage(`${pathToTestImages}/testing-image2.jpg`, 3);
+        const fileJpeg2 = showImage(pathToJpgImage2, 3);
         verifyElapsedMillisBetween(3000, 3500);
         assertNotNull(fileJpeg2);
         assertType(File, fileJpeg2);
-        verifyEqual(`${pathToTestImages}/testing-image2.jpg`, fileJpeg2.getPath());
+        verifyEqual(pathToJpgImage2, fileJpeg2.getPath());
+    },
+    () => {
+        logTest('showImage(String, Double) JPEG, explicit, existing');
 
         resetTimer();
-        const fileJpeg3 = showImage(`${pathToTestImages}/testing-image3.jpg`, 5.8);
+        const fileJpeg3 = showImage(pathToJpgImage3, 5.8);
         verifyElapsedMillisBetween(5000, 5500);
         assertNotNull(fileJpeg3);
         assertType(File, fileJpeg3);
-        verifyEqual(`${pathToTestImages}/testing-image3.jpg`, fileJpeg3.getPath());
-    }
-
-    function test_showImage_String_PNG() {
-        logTest('showImage(String) PNG');
+        verifyEqual(pathToJpgImage3, fileJpeg3.getPath());
+    },
+    () => {
+        logTest('showImage(String) PNG, explicit, existing');
 
         resetTimer();
-        const filePng4 = showImage(`${pathToTestImages}/testing-image4.png`);
+        const filePng4 = showImage(pathToPngImage4);
         verifyElapsedMillisLessThan(500);
         assertNotNull(filePng4);
         assertType(File, filePng4);
-        verifyEqual(`${pathToTestImages}/testing-image4.png`, filePng4.getPath());
+        verifyEqual(pathToPngImage4, filePng4.getPath());
+    },
+    () => {
+        logTest('showImage(String, Integer) PNG, explicit, existing');
 
         resetTimer();
-        const filePng5 = showImage(`${pathToTestImages}/testing-image5.png`, 3);
+        const filePng5 = showImage(pathToPngImage5, 3);
         verifyElapsedMillisBetween(3000, 3500);
         assertNotNull(filePng5);
         assertType(File, filePng5);
-        verifyEqual(`${pathToTestImages}/testing-image5.png`, filePng5.getPath());
+        verifyEqual(pathToPngImage5, filePng5.getPath());
+    },
+    () => {
+        logTest('showImage(String, Double) PNG, explicit, existing');
 
         resetTimer();
-        const filePng6 = showImage(`${pathToTestImages}/testing-image6.png`, 5.8);
+        const filePng6 = showImage(pathToPngImage6, 5.8);
         verifyElapsedMillisBetween(5000, 5500);
         assertNotNull(filePng6);
         assertType(File, filePng6);
-        verifyEqual(`${pathToTestImages}/testing-image6.png`, filePng6.getPath());
-    }
-
-    function test_showImage_String_GIF() {
-        logTest('showImage(String) GIF');
+        verifyEqual(pathToPngImage6, filePng6.getPath());
+    },
+    () => {
+        logTest('showImage(String) GIF, explicit, existing');
 
         resetTimer();
-        const fileGif1 = showImage(`${pathToTestImages}/testing-image1.gif`);
+        const fileGif1 = showImage(pathToGifImage1);
         verifyElapsedMillisLessThan(500);
         assertNotNull(fileGif1);
         assertType(File, fileGif1);
-        verifyEqual(`${pathToTestImages}/testing-image1.gif`, fileGif1.getPath());
+        verifyEqual(pathToGifImage1, fileGif1.getPath());
+    },
+    () => {
+        logTest('showImage(String, Integer) GIF, explicit, existing');
 
         resetTimer();
-        const fileGif2 = showImage(`${pathToTestImages}/testing-image2.gif`, 3);
+        const fileGif2 = showImage(pathToGifImage2, 3);
         verifyElapsedMillisBetween(3000, 3500);
         assertNotNull(fileGif2);
         assertType(File, fileGif2);
-        verifyEqual(`${pathToTestImages}/testing-image2.gif`, fileGif2.getPath());
+        verifyEqual(pathToGifImage2, fileGif2.getPath());
+    },
+    () => {
+        logTest('showImage(String, Double) GIF, explicit, existing');
 
         resetTimer();
-        const fileGif3 = showImage(`${pathToTestImages}/testing-image3.gif`, 5.8);
+        const fileGif3 = showImage(pathToGifImage3, 5.8);
         verifyElapsedMillisBetween(5000, 5500);
         assertNotNull(fileGif3);
         assertType(File, fileGif3);
-        verifyEqual(`${pathToTestImages}/testing-image3.gif`, fileGif3.getPath());
-    }
+        verifyEqual(pathToGifImage3, fileGif3.getPath());
+    },
+    () => {
+        logTest('showImage(File) JPEG, explicit, existing');
 
-    function test_showImage_File_JPEG() {
-        logTest('showImage(File) JPEG');
-
-        const fileJpeg1 = new File(`${pathToTestImages}/testing-image1.jpg`);
-        const fileJpeg2 = new File(`${pathToTestImages}/testing-image2.jpg`);
-        const fileJpeg3 = new File(`${pathToTestImages}/testing-image3.jpg`);
+        const fileJpeg1 = new File(pathToJpgImage1);
 
         resetTimer();
         const retFileJpeg1 = showImage(fileJpeg1);
         verifyElapsedMillisLessThan(500);
         assertType(File, retFileJpeg1);
         verifySame(fileJpeg1, retFileJpeg1);
+    },
+    () => {
+        logTest('showImage(File, Integer) JPEG, explicit, existing');
+
+        const fileJpeg2 = new File(pathToJpgImage2);
 
         resetTimer();
         const retFileJpeg2 = showImage(fileJpeg2, 2);
         verifyElapsedMillisBetween(2000, 2500);
         assertType(File, retFileJpeg2);
         verifySame(fileJpeg2, retFileJpeg2);
+    },
+    () => {
+        logTest('showImage(File, Double) JPEG, explicit, existing');
+
+        const fileJpeg3 = new File(pathToJpgImage3);
 
         resetTimer();
         const retFileJpeg3 = showImage(fileJpeg3, 4.5);
         verifyElapsedMillisBetween(4000, 4500);
         assertType(File, retFileJpeg3);
         verifySame(fileJpeg3, retFileJpeg3);
-    }
+    },
+    () => {
+        logTest('showImage(File) PNG, explicit, existing');
 
-    function test_showImage_File_PNG() {
-        logTest('showImage(File) PNG');
-
-        const filePng4 = new File(`${pathToTestImages}/testing-image4.png`);
-        const filePng5 = new File(`${pathToTestImages}/testing-image5.png`);
-        const filePng6 = new File(`${pathToTestImages}/testing-image6.png`);
+        const filePng4 = new File(pathToPngImage4);
 
         resetTimer();
         const retFilePng4 = showImage(filePng4);
         verifyElapsedMillisLessThan(500);
         assertType(File, retFilePng4);
         verifySame(filePng4, retFilePng4);
+    },
+    () => {
+        logTest('showImage(File, Integer) PNG, explicit, existing');
+
+        const filePng5 = new File(pathToPngImage5);
 
         resetTimer();
         const retFilePng5 = showImage(filePng5, 2);
         verifyElapsedMillisBetween(2000, 2500);
         assertType(File, retFilePng5);
         verifySame(filePng5, retFilePng5);
+    },
+    () => {
+        logTest('showImage(File, Double) PNG, explicit, existing');
+
+        const filePng6 = new File(pathToPngImage6);
 
         resetTimer();
         const retFilePng6 = showImage(filePng6, 4.5);
         verifyElapsedMillisBetween(4000, 4500);
         assertType(File, retFilePng6);
         verifySame(filePng6, retFilePng6);
-    }
+    },
+    () => {
+        logTest('showImage(File) GIF, explicit, existing');
 
-    function test_showImage_File_GIF() {
-        logTest('showImage(File) GIF');
-
-        const fileGif1 = new File(`${pathToTestImages}/testing-image1.gif`);
-        const fileGif2 = new File(`${pathToTestImages}/testing-image2.gif`);
-        const fileGif3 = new File(`${pathToTestImages}/testing-image3.gif`);
+        const fileGif1 = new File(pathToGifImage1);
 
         resetTimer();
         const retFileGif1 = showImage(fileGif1);
         verifyElapsedMillisLessThan(500);
         assertType(File, retFileGif1);
         verifySame(fileGif1, retFileGif1);
+    },
+    () => {
+        logTest('showImage(File, Number) GIF, explicit, existing');
+
+        const fileGif2 = new File(pathToGifImage2);
 
         resetTimer();
         const retFileGif2 = showImage(fileGif2, 2);
         verifyElapsedMillisBetween(2000, 2500);
         assertType(File, retFileGif2);
         verifySame(fileGif2, retFileGif2);
+    },
+    () => {
+        logTest('showImage(File, Double) GIF, explicit, existing');
+
+        const fileGif3 = new File(pathToGifImage3);
 
         resetTimer();
         const retFileGif3 = showImage(fileGif3, 4.5);
         verifyElapsedMillisBetween(4000, 4500);
         assertType(File, retFileGif3);
         verifySame(fileGif3, retFileGif3);
-    }
-
-    function test_showImage_MediaURL_JPG() {
-        logTest('showImage(MediaURL) JPG');
+    },
+    () => {
+        logTest('showImage(MediaURL) JPG, explicit, existing');
         logUrlFilesDependency();
-
-        const mediaJpgUrl = new MediaURL(MediaType.IMAGE, filenameOfTestJpgUrls);
 
         resetTimer();
         const fileJpg1 = showImage(mediaJpgUrl);
         verifyElapsedMillisLessThan(500);
         assertNotNull(fileJpg1);
         assertType(File, fileJpg1);
-        verifyMatch(`^${pathToDownloadedImages}/testing-image[1-6]\\.jpg$`, fileJpg1.getPath());
+        verifyMatch(regexPathToDownloadedJpgImages, fileJpg1.getPath());
+    },
+    () => {
+        logTest('showImage(MediaURL, Integer) JPG, explicit, existing');
+        logUrlFilesDependency();
 
         resetTimer();
         const fileJpg2 = showImage(mediaJpgUrl, 2);
         verifyElapsedMillisBetween(2000, 2500);
         assertNotNull(fileJpg2);
         assertType(File, fileJpg2);
-        verifyMatch(`^${pathToDownloadedImages}/testing-image[1-6]\\.jpg$`, fileJpg2.getPath());
+        verifyMatch(regexPathToDownloadedJpgImages, fileJpg2.getPath());
+    },
+    () => {
+        logTest('showImage(MediaURL, Double) JPG, explicit, existing');
+        logUrlFilesDependency();
 
         resetTimer();
         const fileJpg3 = showImage(mediaJpgUrl, 3.5);
         verifyElapsedMillisBetween(3000, 3500);
         assertNotNull(fileJpg3);
         assertType(File, fileJpg3);
-        verifyMatch(`^${pathToDownloadedImages}/testing-image[1-6]\\.jpg$`, fileJpg3.getPath());
-    }
-
-    function test_showImage_MediaURL_PNG() {
-        logTest('showImage(MediaURL) PNG');
+        verifyMatch(regexPathToDownloadedJpgImages, fileJpg3.getPath());
+    },
+    () => {
+        logTest('showImage(MediaURL) PNG, explicit, existing');
         logUrlFilesDependency();
-
-        const mediaPngUrl = new MediaURL(MediaType.IMAGE, filenameOfTestPngUrls);
 
         resetTimer();
         const urlPng1 = showImage(mediaPngUrl);
         verifyElapsedMillisLessThan(500);
         assertNotNull(urlPng1);
         assertType(File, urlPng1);
-        verifyMatch(`^${pathToDownloadedImages}/testing-image[1-6]\\.png$`, urlPng1.getPath());
+        verifyMatch(regexPathToDownloadedPngImages, urlPng1.getPath());
+    },
+    () => {
+        logTest('showImage(MediaURL, Integer) PNG, explicit, existing');
+        logUrlFilesDependency();
 
         resetTimer();
         const urlPng2 = showImage(mediaPngUrl, 2);
         verifyElapsedMillisBetween(2000, 2500);
         assertNotNull(urlPng2);
         assertType(File, urlPng2);
-        verifyMatch(`^${pathToDownloadedImages}/testing-image[1-6]\\.png$`, urlPng2.getPath());
+        verifyMatch(regexPathToDownloadedPngImages, urlPng2.getPath());
+    },
+    () => {
+        logTest('showImage(MediaURL, Double) PNG, explicit, existing');
+        logUrlFilesDependency();
 
         resetTimer();
         const urlPng3 = showImage(mediaPngUrl, 3.5);
         verifyElapsedMillisBetween(3000, 3500);
         assertNotNull(urlPng3);
         assertType(File, urlPng3);
-        verifyMatch(`^${pathToDownloadedImages}/testing-image[1-6]\\.png$`, urlPng3.getPath());
-    }
-
-    function test_showImage_MediaURL_GIF() {
-        logTest('showImage(MediaURL) GIF');
+        verifyMatch(regexPathToDownloadedPngImages, urlPng3.getPath());
+    },
+    () => {
+        logTest('showImage(MediaURL) GIF, explicit, existing');
         logUrlFilesDependency();
-
-        const mediaGifUrl = new MediaURL(MediaType.IMAGE, filenameOfTestGifUrls);
 
         resetTimer();
         const urlGif1 = showImage(mediaGifUrl);
         verifyElapsedMillisLessThan(500);
         assertNotNull(urlGif1);
         assertType(File, urlGif1);
-        verifyMatch(`^${pathToDownloadedImages}/testing-image[1-6]\\.gif$`, urlGif1.getPath());
+        verifyMatch(regexPathToDownloadedGifImages, urlGif1.getPath());
+    },
+    () => {
+        logTest('showImage(MediaURL, Integer) GIF, explicit, existing');
+        logUrlFilesDependency();
 
         resetTimer();
         const urlGif2 = showImage(mediaGifUrl, 2);
         verifyElapsedMillisBetween(2000, 2500);
         assertNotNull(urlGif2);
         assertType(File, urlGif2);
-        verifyMatch(`^${pathToDownloadedImages}/testing-image[1-6]\\.gif$`, urlGif2.getPath());
+        verifyMatch(regexPathToDownloadedGifImages, urlGif2.getPath());
+    },
+    () => {
+        logTest('showImage(MediaURL, Double) GIF, explicit, existing');
+        logUrlFilesDependency();
 
         resetTimer();
         const urlGif3 = showImage(mediaGifUrl, 3.5);
         verifyElapsedMillisBetween(3000, 3500);
         assertNotNull(urlGif3);
         assertType(File, urlGif3);
-        verifyMatch(`^${pathToDownloadedImages}/testing-image[1-6]\\.gif$`, urlGif3.getPath());
-    }
-
-    function test_showImage_NULL() {
+        verifyMatch(regexPathToDownloadedGifImages, urlGif3.getPath());
+    },
+    () => {
         logTest('showImage(null)');
 
         resetTimer();
         const file = showImage(null);
         verifyElapsedMillisLessThan(100);
         verifyNull(file);
-    }
-
-    function test_showImage_BadCalls() {
+    },
+    () => {
         logTest('Bad calls');
 
-        const fileJpeg1 = new File(`${pathToTestImages}/testing-image1.jpg`);
-        const mediaJpgUrl = new MediaURL(MediaType.IMAGE, filenameOfTestJpgUrls);
+        const fileJpeg1 = new File(pathToJpgImage1);
 
         resetTimer();
         const bad1 = showImage();
@@ -295,22 +362,12 @@ function getListOfTests_showImage() {
         verifyNull(bad5);
         const bad6 = showImage(mediaJpgUrl, 1.1, 2);
         verifyNull(bad6);
+        const bad7 = showImage(pathToJpgImage1, pathToJpgImage2);
+        verifyNull(bad7);
         verifyElapsedMillisLessThan(100);
-    }
+    }];
 
-    return [
-        test_showImage_String_JPEG,
-        test_showImage_String_PNG,
-        test_showImage_String_GIF,
-        test_showImage_File_JPEG,
-        test_showImage_File_PNG,
-        test_showImage_File_GIF,
-        test_showImage_MediaURL_JPG,
-        test_showImage_MediaURL_PNG,
-        test_showImage_MediaURL_GIF,
-        test_showImage_NULL,
-        test_showImage_BadCalls
-    ];
+    return listOfTestFunctions;
 }
 
-registerTestSuite('showImage', getListOfTests_showImage());
+registerTestSuite('showImage', getListOfTestFunctions_showImage());
