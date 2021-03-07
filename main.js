@@ -1,12 +1,15 @@
-run('framework.js');
-run('tests/getVar.js');
-run('tests/setVar.js');
-run('tests/showImage.js');
+run('Framework/TestLog.js');
+run('Framework/TestRegister.js');
+run('Framework/TestRunner.js');
+run('Framework/Test.js');
+run('Tests/getVar.js');
+run('Tests/setVar.js');
+run('Tests/showImage.js');
 
-getListOfTestSuiteNames().forEach(suiteName => {
-    runTestSuiteByName(suiteName);
+TestRegister.getListOfTestSuiteNames().forEach(suiteName => {
+    TestRunner.runTestSuiteByName(suiteName);
 });
 
-logResults();
+TestRunner.logResults();
 
 createInput('Done.');
