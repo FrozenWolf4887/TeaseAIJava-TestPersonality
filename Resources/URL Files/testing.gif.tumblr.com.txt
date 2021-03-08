@@ -1,8 +1,8 @@
 http://testing.gif.tumblr.com
 false
-http://localhost:8000/testing-image1.gif
-http://localhost:8000/testing-image2.gif
-http://localhost:8000/testing-image3.gif
-http://localhost:8000/testing-image4.gif
-http://localhost:8000/testing-image5.gif
-http://localhost:8000/testing-image6.gif
+http://localhost:8000/Images/testing-image1.gif
+http://localhost:8000/Images/testing-image2.gif
+http://localhost:8000/Images/testing-image3.gif
+http://localhost:8000/Images/testing-image4.gif
+http://localhost:8000/Images/testing-image5.gif
+http://localhost:8000/Images/testing-image6.gif

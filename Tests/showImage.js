@@ -13,7 +13,7 @@
     function logUrlFilesDependency() {
         TestLog.logNote('The following URL fetch tests require the following:');
         TestLog.logNote("* The URL Files from the 'Resource' directory are copied to 'Images/System/URL Files'");
-        TestLog.logNote(`* Localhost HTTP server running on port 8000 serving files from '${pathToTestImages}'`);
+        TestLog.logNote(`* Localhost HTTP server running on port 8000 serving files from '${pathToTestResources}'`);
         TestLog.logNote("    For example, 'python3 -m http.server'");
     }
 
@@ -24,7 +24,8 @@
     const millisToleranceForShowing = 500;
     const millisToleranceForDownloading = 500;
 
-    const pathToTestImages = 'Personalities/Testing/Resources/Images';
+    const pathToTestResources = 'Personalities/Testing/Resources';
+    const pathToTestImages = `${pathToTestResources}/Images`;
     const pathToDownloadedImages = 'Images/System/Downloaded Images';
     const regexPathToDownloadedJpgImages = `^${pathToDownloadedImages}/testing-image[1-6]\\.jpg$`;
     const regexPathToDownloadedPngImages = `^${pathToDownloadedImages}/testing-image[1-6]\\.png$`;

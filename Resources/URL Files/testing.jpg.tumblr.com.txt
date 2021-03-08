@@ -1,8 +1,8 @@
 http://testing.jpg.tumblr.com
 false
-http://localhost:8000/testing-image1.jpg
-http://localhost:8000/testing-image2.jpg
-http://localhost:8000/testing-image3.jpg
-http://localhost:8000/testing-image4.jpg
-http://localhost:8000/testing-image5.jpg
-http://localhost:8000/testing-image6.jpg
+http://localhost:8000/Images/testing-image1.jpg
+http://localhost:8000/Images/testing-image2.jpg
+http://localhost:8000/Images/testing-image3.jpg
+http://localhost:8000/Images/testing-image4.jpg
+http://localhost:8000/Images/testing-image5.jpg
+http://localhost:8000/Images/testing-image6.jpg
