@@ -54,6 +54,23 @@
 
     const listOfTestFunctions = [
     () => {
+        Test.logName('showImage(...): Preparation - Delete downloaded test images');
+
+        [1, 2, 3, 4, 5, 6].forEach(index => {
+            ['png', 'jpg', 'gif'].forEach(extension => {
+                const filePath = `${pathToDownloadedImages}/testing-image${index}.${extension}`;
+                const file = new File(filePath);
+                if (file.exists()) {
+                    if (file.delete()) {
+                        TestLog.logNote(`Removed downloaded file '${filePath}'`);
+                    } else {
+                        Test.fail(`Unable to remove downloaded file '${filePath}'`);
+                    }
+                }
+            });
+        });
+    },
+    () => {
         Test.logName('showImage(String) JPEG, explicit, existing');
         TestLog.logNote('This first test may fail due to the Java VM initialising the image handling, in which case, run it again');
 
