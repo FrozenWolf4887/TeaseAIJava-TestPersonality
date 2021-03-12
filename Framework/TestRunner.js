@@ -46,7 +46,7 @@ const TestRunner = {
     },
 
     abortTest: function() {
-        throw this.TEST_FAILURE_EXCEPTION;
+        throw this.ABORT_TEST_EXCEPTION;
     },
 
     logResults: function() {
