@@ -7,24 +7,24 @@
 {
     const pathToTestVideos = `${pathToTestResources}/Videos`;
 
-    const pathToMp4Video1 = `${pathToTestVideos}/video1.mp4`;
-    const pathToMp4Video2 = `${pathToTestVideos}/video2.mp4`;
-    const pathToMp4Video3 = `${pathToTestVideos}/video3.mp4`;
-    const pathToMp4Video4 = `${pathToTestVideos}/video4.mp4`;
-    const pathToMp4Video5 = `${pathToTestVideos}/video5.mp4`;
-    const pathToMp4Video6 = `${pathToTestVideos}/video6.mp4`;
+    const pathToMp4Video1 = `${pathToTestVideos}/testing-video1.mp4`;
+    const pathToMp4Video2 = `${pathToTestVideos}/testing-video2.mp4`;
+    const pathToMp4Video3 = `${pathToTestVideos}/testing-video3.mp4`;
+    const pathToMp4Video4 = `${pathToTestVideos}/testing-video4.mp4`;
+    const pathToMp4Video5 = `${pathToTestVideos}/testing-video5.mp4`;
+    const pathToMp4Video6 = `${pathToTestVideos}/testing-video6.mp4`;
     const pathToRandomMp4Video = `${pathToTestVideos}/*.mp4`;
-    const pathToUnknownFormatVideo = `${pathToTestVideos}/video1.mkv`;
+    const pathToUnknownFormatVideo = `${pathToTestVideos}/testing-video1.mkv`;
     const pathToMissingMp4Video = `${pathToTestVideos}/ThisDoesNotExist.mp4`;
 
     const urlOfTestServerVideos = `${urlOfTestServer}/Videos`;
 
-    const urlToMp4Video1 = `${urlOfTestServerVideos}/video1.mp4`;
-    const urlToMp4Video2 = `${urlOfTestServerVideos}/video2.mp4`;
-    const urlToMp4Video3 = `${urlOfTestServerVideos}/video3.mp4`;
-    const urlToMp4Video4 = `${urlOfTestServerVideos}/video4.mp4`;
-    const urlToMp4Video5 = `${urlOfTestServerVideos}/video5.mp4`;
-    const urlToMp4Video6 = `${urlOfTestServerVideos}/video6.mp4`;
+    const urlToMp4Video1 = `${urlOfTestServerVideos}/testing-video1.mp4`;
+    const urlToMp4Video2 = `${urlOfTestServerVideos}/testing-video2.mp4`;
+    const urlToMp4Video3 = `${urlOfTestServerVideos}/testing-video3.mp4`;
+    const urlToMp4Video4 = `${urlOfTestServerVideos}/testing-video4.mp4`;
+    const urlToMp4Video5 = `${urlOfTestServerVideos}/testing-video5.mp4`;
+    const urlToMp4Video6 = `${urlOfTestServerVideos}/testing-video6.mp4`;
 
     const millisToleranceForStarting = 500;
     const millisToleranceForServer = 500;
