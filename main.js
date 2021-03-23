@@ -25,6 +25,7 @@ function logUrlFilesDependency() {
 run('Tests/getVar.js');
 run('Tests/setVar.js');
 run('Tests/showImage.js');
+run('Tests/playAudio.js');
 run('Tests/playVideo.js');
 
 TestRegister.getListOfTestSuiteNames().forEach(suiteName => {
