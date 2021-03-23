@@ -172,5 +172,5 @@
         playVideo(true, 'foo');
     }];
 
-    TestRegister.addTestSuite('showVideo', listOfTestFunctions);
+    TestRegister.addTestSuite('playVideo', listOfTestFunctions);
 }
